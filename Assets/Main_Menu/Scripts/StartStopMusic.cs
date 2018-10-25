@@ -22,4 +22,15 @@ public class StartStopMusic : MonoBehaviour {
         }
         else MenuMusic.Play();
     }
+
+    public void MusicStop()
+    {
+        MusicCounter++;
+
+        if (MusicCounter % 2 > 0)
+        {
+            MenuMusic.Pause();
+        }
+        else MenuMusic.Play();
+    }
 }

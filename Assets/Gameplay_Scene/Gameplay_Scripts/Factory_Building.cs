@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+    [Serializable]
     class Factory_Building : Building
     {
     public int Health

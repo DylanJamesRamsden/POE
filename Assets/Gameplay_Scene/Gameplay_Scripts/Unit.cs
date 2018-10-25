@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+    [Serializable]
     public abstract class Unit
     {
         protected string name; //Holds the name of the unit
@@ -18,7 +19,7 @@ using UnityEngine;
 
         protected int attack; //Holds the units attack damage
 
-        protected int attackRange; //Holds the units attack range, varies if the unit is melee or ranged
+        protected float attackRange; //Holds the units attack range, varies if the unit is melee or ranged
 
         protected bool isalive; //Holds the units current alive status; alive or dead
 
@@ -28,6 +29,7 @@ using UnityEngine;
 
         protected int unitcost; //Holds the production cost of the unit
 
+        [NonSerialized]
         protected GameObject unitobject;
 
         //abstract public void newPos(int xP, int yP); //Assigns the unit a new x or y position
@@ -36,7 +38,7 @@ using UnityEngine;
 
         abstract public bool inRange(Unit Enemy); //This method is used to check if the unit is in range to attack the closest enemy
 
-        abstract public Unit closestUnit(Unit[] MapOfUnits);  //This method is used to obtain the closest enemy
+        abstract public Unit closestUnit(List<Unit> MapOfUnits);  //This method is used to obtain the closest enemy
 
         abstract public void isDead(); //This method is used to assign the units current alive status
 

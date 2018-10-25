@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+    [Serializable]
     class RangedUnit : Unit
     {
         public string Name
@@ -42,7 +43,7 @@ using UnityEngine;
             set { base.attack = value; }
         }
 
-        public int AttackRange
+        public float AttackRange
         {
             get { return base.attackRange; }
             set { base.attackRange = value; }
@@ -86,7 +87,7 @@ using UnityEngine;
             Health = 100;
             Speed = 3;
             Attack = 50;
-            AttackRange = 1;
+            AttackRange = 0.2f;
             Faction = unitFaction;
             HasTurned = false;
             IsAlive = true;
@@ -197,69 +198,66 @@ using UnityEngine;
             return Temp;
         }
 
-        public override Unit closestUnit(Unit[] MapOfUnits) //This method finds the closest enemy unit away from this unit
-        {
-            Unit ClosestEnemy = this;
-            float Distance = 50;
+    public override Unit closestUnit(List<Unit> MapOfUnits) //This method finds the closest enemy unit away from this unit
+    {
+        Unit ClosestEnemy = this;
+        float Distance = 300;
 
-            for (int i = 0; i < 18; i++)
+        foreach (Unit u in MapOfUnits)
+        {
+            if (u.GetType() == typeof(MeleeUnit))
             {
-                if (MapOfUnits[i] != null)
+                MeleeUnit Current = (MeleeUnit)u;
+                if (UnitObject.transform.position.x != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
                 {
-                    if (MapOfUnits[i].GetType() == typeof(MeleeUnit))
+                    if (Distance > DistanceTo(Current))
                     {
-                        MeleeUnit Current = (MeleeUnit)MapOfUnits[i];
-                        if (UnitObject.transform.position.x  != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
-                        {
-                            if (Distance > DistanceTo(Current))
-                            {
-                                Distance = DistanceTo(Current);
-                                ClosestEnemy = MapOfUnits[i];
-                            }
-                        }
-                    }
-                    else if (MapOfUnits[i].GetType() == typeof(RangedUnit))
-                    {
-                        RangedUnit Current = (RangedUnit)MapOfUnits[i];
-                        if (UnitObject.transform.position.x != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
-                        {
-                            if (Distance > DistanceTo(Current))
-                            {
-                                Distance = DistanceTo(Current);
-                                ClosestEnemy = MapOfUnits[i];
-                            }
-                        }
-                    }
-                    else if (MapOfUnits[i].GetType() == typeof(BarbarianMelee))
-                    {
-                        BarbarianMelee Current = (BarbarianMelee)MapOfUnits[i];
-                        if (UnitObject.transform.position.x != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
-                        {
-                            if (Distance > DistanceTo(Current))
-                            {
-                                Distance = DistanceTo(Current);
-                                ClosestEnemy = MapOfUnits[i];
-                            }
-                        }
-                    }
-                    else
-                    {
-                        BarbarianRanged Current = (BarbarianRanged)MapOfUnits[i];
-                        if (UnitObject.transform.position.x != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
-                        {
-                            if (Distance > DistanceTo(Current))
-                            {
-                                Distance = DistanceTo(Current);
-                                ClosestEnemy = MapOfUnits[i];
-                            }
-                        }
+                        Distance = DistanceTo(Current);
+                        ClosestEnemy = u;
                     }
                 }
             }
-            return ClosestEnemy;
+            else if (u.GetType() == typeof(RangedUnit))
+            {
+                RangedUnit Current = (RangedUnit)u;
+                if (UnitObject.transform.position.x != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
+                {
+                    if (Distance > DistanceTo(Current))
+                    {
+                        Distance = DistanceTo(Current);
+                        ClosestEnemy = u;
+                    }
+                }
+            }
+            else if (u.GetType() == typeof(BarbarianMelee))
+            {
+                BarbarianMelee Current = (BarbarianMelee)u;
+                if (UnitObject.transform.position.x != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
+                {
+                    if (Distance > DistanceTo(Current))
+                    {
+                        Distance = DistanceTo(Current);
+                        ClosestEnemy = u;
+                    }
+                }
+            }
+            else
+            {
+                BarbarianRanged Current = (BarbarianRanged)u;
+                if (UnitObject.transform.position.x != Current.UnitObject.transform.position.x && UnitObject.transform.position.y != Current.UnitObject.transform.position.y && Current.Faction != Faction && Current.IsAlive == true)
+                {
+                    if (Distance > DistanceTo(Current))
+                    {
+                        Distance = DistanceTo(Current);
+                        ClosestEnemy = u;
+                    }
+                }
+            }
         }
+        return ClosestEnemy;
+    }
 
-        private float DistanceTo(Unit u) //This method calculates the distance between this unit and another one and then returns it as an int
+    private float DistanceTo(Unit u) //This method calculates the distance between this unit and another one and then returns it as an int
         {
             if (u.GetType() == typeof(MeleeUnit))
             {
