@@ -79,7 +79,13 @@ using UnityEngine;
             set { base.unitobject = value; }
         }
 
-        public MeleeUnit(string uname, String unitFaction) //Constructor to set the Melee units stats
+        public Animator UnitAnimator
+        {
+            get { return base.unitanimator; }
+            set { base.unitanimator = value; }
+        }
+
+    public MeleeUnit(string uname, String unitFaction) //Constructor to set the Melee units stats
         {
             Name = uname;
             //XPos = xP;

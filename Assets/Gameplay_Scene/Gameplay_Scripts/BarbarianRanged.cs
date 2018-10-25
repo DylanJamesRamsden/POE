@@ -73,7 +73,13 @@ using UnityEngine;
             set { base.unitobject = value; }
         }
 
-        public BarbarianRanged(string uname, String unitFaction)
+        public Animator UnitAnimator
+        {
+            get { return base.unitanimator; }
+            set { base.unitanimator = value; }
+        }
+
+    public BarbarianRanged(string uname, String unitFaction)
         {
             Name = uname;
             //XPos = xP;

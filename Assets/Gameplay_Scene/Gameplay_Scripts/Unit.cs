@@ -32,6 +32,9 @@ using UnityEngine;
         [NonSerialized]
         protected GameObject unitobject;
 
+        [NonSerialized]
+        protected Animator unitanimator;
+
         //abstract public void newPos(int xP, int yP); //Assigns the unit a new x or y position
 
         abstract public void combatWithEnemy(Unit Enemy); //This method is used to carry out combat between the unit and its closest enemy

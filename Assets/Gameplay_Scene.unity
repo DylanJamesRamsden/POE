@@ -512,13 +512,13 @@ MonoBehaviour:
   gameTimer: {fileID: 1714055790}
   redResourceText: {fileID: 910971464}
   blueResourceText: {fileID: 2092773827}
-  BlueArcher: {fileID: 1332003339134244, guid: 74c31b139e2f56348a299ae1a3a410ec, type: 2}
-  BlueSword: {fileID: 1546281854826664, guid: f8593981fb300204e8d482d251cec1e3, type: 2}
-  RedArcher: {fileID: 1123847328829874, guid: b0582bb420e5a7644870da79224acb3a, type: 2}
-  RedSword: {fileID: 1495501804529152, guid: 45e68d8586994d940a28913a87db93bd, type: 2}
-  WhiteArcher: {fileID: 1669728170669826, guid: 9638dda66b3ebab4da7c68a4a20ff261,
+  BlueArcher: {fileID: 1698042638451076, guid: 6e163eff3e585ca4aa1c33716d2ae1b8, type: 2}
+  BlueSword: {fileID: 1156054418277012, guid: 96f3ae72e78c3c042a5d2468ebf3fad2, type: 2}
+  RedArcher: {fileID: 1735136531273366, guid: 87b539ac3042e9247bacd2f2b9137e4f, type: 2}
+  RedSword: {fileID: 1415981971439712, guid: 80dded9cb4a3cc6418b0a6da4c345d72, type: 2}
+  WhiteArcher: {fileID: 1393580548412480, guid: 99f93e892c50a864e82de0c7f4a6a6c7,
     type: 2}
-  WhiteSword: {fileID: 1727999823573964, guid: 5c9c5b7df81244840a4f9bcb58209c1d, type: 2}
+  WhiteSword: {fileID: 1550479307987416, guid: cba9fa28180814146b7c16bbea8111bd, type: 2}
   RedFactory: {fileID: 1665988739017792, guid: 777422d2c2f4b1a488e1d5e1cfc5f2bf, type: 2}
   RedResource: {fileID: 1874404229954112, guid: a96c86744a761e64ba584c2eab58a941,
     type: 2}
