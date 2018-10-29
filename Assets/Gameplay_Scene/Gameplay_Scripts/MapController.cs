@@ -87,11 +87,11 @@ using UnityEngine;
                     gameBuildings.Add(newResource2);
                     break;
                 case 4:
-                    Factory_Building newRedFactory1 = new Factory_Building("Melee", 5, 0.77f, -3.45f, 100, "Blue");
+                    Factory_Building newRedFactory1 = new Factory_Building("Melee", 5, 0.77f, -3.45f, 100, "Red");
                     gameBuildings.Add(newRedFactory1);
                     break;
                 case 5:
-                    Factory_Building newRedFactory2 = new Factory_Building("Ranged", 5, 2.86f, -2.76f, 100, "Blue");
+                    Factory_Building newRedFactory2 = new Factory_Building("Ranged", 5, 2.86f, -2.76f, 100, "Red");
                     gameBuildings.Add(newRedFactory2);
                     break;
             }

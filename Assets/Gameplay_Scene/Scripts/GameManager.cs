@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour {
     public GameObject BlueFactory;
     public GameObject BlueResource;
 
+    List<Unit> Units2Delete = new List<Unit>();
+
     // Use this for initialization
     void Start()
     {
@@ -50,6 +52,8 @@ public class GameManager : MonoBehaviour {
         Map.GenerateUnits();
 
         CreateMap();
+
+
     }
 	
 	// Update is called once per frame
@@ -82,11 +86,11 @@ public class GameManager : MonoBehaviour {
 
         if (gameActive == true)
         {
-            foreach (Unit u in Map.gameUnits)
+            for (int i = 0; i < Map.gameUnits.Count; i++)
             {
-                if (u.GetType() == typeof(MeleeUnit)) //This if statements is used to determine which type the Unit is
+                if (Map.gameUnits[i].GetType() == typeof(MeleeUnit)) //This if statements is used to determine which type the Unit is
                 {
-                    MeleeUnit soldier = (MeleeUnit)u; //This casts the Unit as a MeleeUnit, this allows us to access its properties
+                    MeleeUnit soldier = (MeleeUnit)Map.gameUnits[i]; //This casts the Unit as a MeleeUnit, this allows us to access its properties
                                                       //soldier.closestUnit(UnitsOnMap);
                     if (soldier.IsAlive == true) //This if statements checks if the current Unit is alive or not
                     {
@@ -241,43 +245,21 @@ public class GameManager : MonoBehaviour {
                                 }
                             }
                         }
-                        else if (soldier.Health <= 25)
+                        else if (soldier.Health <= 25  && soldier.Health > 0)
                         {
                             int randomDirection = Random.Range(0, 6);
-
-                            if (randomDirection < 5)
-                            {
-                                moveInRandom(u, randomDirection);
-                            }
-                            else
-                            {
-                                if (soldier.HasTurned == false)
-                                {
-                                    if (soldier.Faction == "Red")
-                                    {
-                                        soldier.Faction = "Blue";
-                                        soldier.Name = "Healed " + soldier.Name;
-                                        soldier.HasTurned = true;
-                                    }
-                                    else
-                                    {
-                                        soldier.Faction = "Red";
-                                        soldier.Name = "Turned " + soldier.Name;
-                                        soldier.HasTurned = true;
-                                    }
-                                }
-                            }
+                                moveInRandom(Map.gameUnits[i], randomDirection);
                         }
-                        else
+                        else if (soldier.Health == 0)
                         {
-                            GameObject.Destroy(soldier.UnitObject);
-                            Map.gameUnits.Remove(u);
+                            Units2Delete.Add(soldier);
+                            Debug.Log("isDead");
                         }
                     }
                 }
-                else if (u.GetType() == typeof(RangedUnit)) //This if statements is used to determine which type the Unit is
+                else if (Map.gameUnits[i].GetType() == typeof(RangedUnit)) //This if statements is used to determine which type the Unit is
                 {
-                    RangedUnit soldier = (RangedUnit)u; //This casts the Unit as a MeleeUnit, this allows us to access its properties
+                    RangedUnit soldier = (RangedUnit)Map.gameUnits[i]; //This casts the Unit as a MeleeUnit, this allows us to access its properties
                                                       //soldier.closestUnit(UnitsOnMap);
                     if (soldier.IsAlive == true) //This if statements checks if the current Unit is alive or not
                     {
@@ -434,43 +416,20 @@ public class GameManager : MonoBehaviour {
                                 }
                             }
                         }
-                        else if (soldier.Health <= 25)
+                        else if (soldier.Health <= 25 && soldier.Health > 0)
                         {
                             int randomDirection = Random.Range(0, 6);
-
-                            if (randomDirection < 5)
-                            {
-                                moveInRandom(u, randomDirection);
-                            }
-                            else
-                            {
-                                if (soldier.HasTurned == false)
-                                {
-                                    if (soldier.Faction == "Red")
-                                    {
-                                        soldier.Faction = "Blue";
-                                        soldier.Name = "Healed " + soldier.Name;
-                                        soldier.HasTurned = true;
-                                    }
-                                    else
-                                    {
-                                        soldier.Faction = "Red";
-                                        soldier.Name = "Turned " + soldier.Name;
-                                        soldier.HasTurned = true;
-                                    }
-                                }
-                            }
+                                moveInRandom(Map.gameUnits[i], randomDirection);
                         }
-                        else
+                        else if(soldier.Health == 0)
                         {
-                            GameObject.Destroy(soldier.UnitObject);
-                            Map.gameUnits.Remove(u);
+                            Units2Delete.Add(soldier);
                         }
                     }
                 }
-                else if (u.GetType() == typeof(BarbarianMelee)) //This if statements is used to determine which type the Unit is
+                else if (Map.gameUnits[i].GetType() == typeof(BarbarianMelee)) //This if statements is used to determine which type the Unit is
                 {
-                    BarbarianMelee soldier = (BarbarianMelee)u; //This casts the Unit as a MeleeUnit, this allows us to access its properties
+                    BarbarianMelee soldier = (BarbarianMelee)Map.gameUnits[i]; //This casts the Unit as a MeleeUnit, this allows us to access its properties
                                                       //soldier.closestUnit(UnitsOnMap);
                     if (soldier.IsAlive == true) //This if statements checks if the current Unit is alive or not
                     {
@@ -563,16 +522,16 @@ public class GameManager : MonoBehaviour {
                                 }
                             }
                         }
-                        else
+                        else if(soldier.Health == 0)
                         {
-                            GameObject.Destroy(soldier.UnitObject);
-                            Map.gameUnits.Remove(u);
+                            Units2Delete.Add(soldier);
+                            Debug.Log("Added");
                         }
                     }
                 }
-                else if (u.GetType() == typeof(BarbarianRanged)) //This if statements is used to determine which type the Unit is
+                else if (Map.gameUnits[i].GetType() == typeof(BarbarianRanged)) //This if statements is used to determine which type the Unit is
                 {
-                    BarbarianRanged soldier = (BarbarianRanged)u; //This casts the Unit as a MeleeUnit, this allows us to access its properties
+                    BarbarianRanged soldier = (BarbarianRanged)Map.gameUnits[i]; //This casts the Unit as a MeleeUnit, this allows us to access its properties
                                                                 //soldier.closestUnit(UnitsOnMap);
                     if (soldier.IsAlive == true) //This if statements checks if the current Unit is alive or not
                     {
@@ -655,16 +614,19 @@ public class GameManager : MonoBehaviour {
                                 }
                             }
                         }
-                        else
+                        else if (soldier.Health == 0)
                         {
-                            GameObject.Destroy(soldier.UnitObject);
-                            Map.gameUnits.Remove(u);
+                            Units2Delete.Add(Map.gameUnits[i]);
+                            Debug.Log("barbarian Destoryed");
                         }
                     }
                 }
             }
         }
-        IdlePause();
+
+        DestroyDeadUnits();
+
+        //IdlePause();
     }
 
     public void BuildingController()
@@ -688,9 +650,10 @@ public class GameManager : MonoBehaviour {
             }
             else if (b.GetType() == typeof(Factory_Building))
             {
-                if (Map.gameUnits.Count < 12)
-                {
+                //if (Map.gameUnits.Count < 12)
+               // {
                     Factory_Building F = (Factory_Building)b;
+                Debug.Log("***");
                     if (F.Faction == "Red")
                     {
                         Unit newUnit = F.SpawnUnit(Map.overallGameTime, Map.redResourceCounter);
@@ -700,12 +663,17 @@ public class GameManager : MonoBehaviour {
                             {
                                 MeleeUnit M = (MeleeUnit)newUnit;
                                 M.UnitObject = Instantiate(RedSword, new Vector3(F.SpawnPointX, F.SpawnPointY, 0), Quaternion.identity);
+                                Map.redResourceCounter -= M.UnitCost;
+                                M.updatePos();
                                 Map.gameUnits.Add(M);
+                            Debug.Log("Unit Spawned");
                             }
                             else if (newUnit.GetType() == typeof(RangedUnit))
                             {
                                 RangedUnit M = (RangedUnit)newUnit;
                                 M.UnitObject = Instantiate(RedArcher, new Vector3(F.SpawnPointX, F.SpawnPointY, 0), Quaternion.identity);
+                                Map.redResourceCounter -= M.UnitCost;
+                                M.updatePos();
                                 Map.gameUnits.Add(M);
                             }
                         }
@@ -719,17 +687,21 @@ public class GameManager : MonoBehaviour {
                             {
                                 MeleeUnit M = (MeleeUnit)newUnit;
                                 M.UnitObject = Instantiate(BlueSword, new Vector3(F.SpawnPointX, F.SpawnPointY, 0), Quaternion.identity);
+                                Map.blueResourceCounter -= M.UnitCost;
+                                M.updatePos();
                                 Map.gameUnits.Add(M);
                             }
                             else if (newUnit.GetType() == typeof(RangedUnit))
                             {
                                 RangedUnit M = (RangedUnit)newUnit;
                                 M.UnitObject = Instantiate(BlueArcher, new Vector3(F.SpawnPointX, F.SpawnPointY, 0), Quaternion.identity);
+                                Map.blueResourceCounter -= M.UnitCost;
+                                M.updatePos();
                                 Map.gameUnits.Add(M);
                             }
                         }
                     }
-                }
+                //}
             }
         }
     }
@@ -954,6 +926,45 @@ public class GameManager : MonoBehaviour {
         foreach(GameObject u in Unit2Destroy)
         {
             Destroy(u);
+        }
+    }
+
+    void DestroyDeadUnits()
+    {
+        Debug.Log(Units2Delete.Count);
+        Debug.Log(Map.gameUnits.Count);
+        for (int i = 0; i < Units2Delete.Count; i++)
+        {
+            for (int a = 0; a < Map.gameUnits.Count; a++)
+            {
+                if (Units2Delete[i] == Map.gameUnits[a])
+                {
+                    if (Map.gameUnits[a].GetType() == typeof(MeleeUnit))
+                    {
+                        MeleeUnit temp = (MeleeUnit)Map.gameUnits[a];
+                        Destroy(temp.UnitObject);
+
+                    }
+                    else if (Map.gameUnits[a].GetType() == typeof(RangedUnit))
+                    {
+                        RangedUnit temp = (RangedUnit)Map.gameUnits[a];
+                        Destroy(temp.UnitObject);
+                    }
+                    else if (Map.gameUnits[a].GetType() == typeof(BarbarianMelee))
+                    {
+                        BarbarianMelee temp = (BarbarianMelee)Map.gameUnits[a];
+                        Destroy(temp.UnitObject);
+                    }
+                    else
+                    {
+                        BarbarianRanged temp = (BarbarianRanged)Map.gameUnits[a];
+                        Destroy(temp.UnitObject);
+                    }
+
+                    Map.gameUnits.Remove(Map.gameUnits[a]);
+                    Units2Delete.Remove(Units2Delete[i]);
+                }
+            }
         }
     }
 

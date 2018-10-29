@@ -35,17 +35,17 @@ using UnityEngine;
         set { secondsperunit = value; }
     }
 
-    private int spawnpointx;
+    private float spawnpointx;
 
-    public int SpawnPointX
+    public float SpawnPointX
     {
         get { return spawnpointx; }
         set { spawnpointx = value; }
     }
 
-    private int spawnpointy;
+    private float spawnpointy;
 
-    public int SpawnPointY
+    public float SpawnPointY
     {
         get { return spawnpointy; }
         set { spawnpointy = value; }
@@ -61,8 +61,8 @@ using UnityEngine;
     {
         UnitToProduce = unitType;
         SecondsPerUnit = secperUnit;
-        //SpawnPointX = spawnX;
-        //SpawnPointY = spawnY;
+        SpawnPointX = spawnX;
+        SpawnPointY = spawnY;
 
         Health = HP;
         Faction = fac;
@@ -99,7 +99,7 @@ using UnityEngine;
 
     public Unit SpawnUnit(int GameCounter, int ResourceCounter) //This method is used to create a new unit
     {
-        if (GameCounter % SecondsPerUnit == 0) //Checks to see if the spawn time has been reached
+        if (GameCounter % SecondsPerUnit > 0) //Checks to see if the spawn time has been reached
         {
             if (UnitToProduce == "Melee")
             {
