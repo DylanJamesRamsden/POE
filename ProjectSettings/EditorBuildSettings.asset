@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Gameplay_Scene.unity
     guid: 65865c63d253cbd41a50d15a07988764
+  - enabled: 1
+    path: Assets/Lore_Scene.unity
+    guid: 50642928b8423d24986199029e5844b9

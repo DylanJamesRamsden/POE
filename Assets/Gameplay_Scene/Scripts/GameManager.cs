@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
             nextTime += interval;
         } //TimerControl
 
-        if (gameActive)
+        if (gameActive == true)
         {
             foreach (Unit u in Map.gameUnits)
             {
@@ -97,29 +97,35 @@ public class GameManager : MonoBehaviour {
                                 MeleeUnit enemy = (MeleeUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false) //This if statement checks whether the current Unit is in range of its target, if it is then there is no point in moving
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
+
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
-                                    soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isAttacking");
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -128,29 +134,35 @@ public class GameManager : MonoBehaviour {
                                 RangedUnit enemy = (RangedUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -159,29 +171,35 @@ public class GameManager : MonoBehaviour {
                                 BarbarianMelee enemy = (BarbarianMelee)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -190,29 +208,35 @@ public class GameManager : MonoBehaviour {
                                 BarbarianRanged enemy = (BarbarianRanged)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -264,29 +288,35 @@ public class GameManager : MonoBehaviour {
                                 MeleeUnit enemy = (MeleeUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false) //This if statement checks whether the current Unit is in range of its target, if it is then there is no point in moving
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -295,30 +325,38 @@ public class GameManager : MonoBehaviour {
                                 RangedUnit enemy = (RangedUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
+
+                                    //soldier.UnitAnimator.SetTrigger
                                 }
                             }
                             else if (soldier.closestUnit(Map.gameUnits).GetType() == typeof(BarbarianMelee))
@@ -326,29 +364,35 @@ public class GameManager : MonoBehaviour {
                                 BarbarianMelee enemy = (BarbarianMelee)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -357,29 +401,35 @@ public class GameManager : MonoBehaviour {
                                 BarbarianRanged enemy = (BarbarianRanged)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -431,10 +481,9 @@ public class GameManager : MonoBehaviour {
                                 MeleeUnit enemy = (MeleeUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false) //This if statement checks whether the current Unit is in range of its target, if it is then there is no point in moving
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
 
-                                    if (soldier.UnitAnimator.GetBool("IsWalking") == false)
+                                    if (soldier.UnitAnimator.GetBool("isWalking") == false)
                                     {
                                         soldier.UnitAnimator.SetBool("isWalking", true);
                                     }
@@ -442,24 +491,31 @@ public class GameManager : MonoBehaviour {
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -468,10 +524,9 @@ public class GameManager : MonoBehaviour {
                                 RangedUnit enemy = (RangedUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    //soldier.UnitAnimator.SetBool("isWalking", true);
-                                    //soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
 
-                                    if (soldier.UnitAnimator.GetBool("IsWalking") == false)
+                                    if (soldier.UnitAnimator.GetBool("isWalking") == false)
                                     {
                                         soldier.UnitAnimator.SetBool("isWalking", true);
                                     }
@@ -479,24 +534,31 @@ public class GameManager : MonoBehaviour {
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -521,29 +583,36 @@ public class GameManager : MonoBehaviour {
                                 MeleeUnit enemy = (MeleeUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false) //This if statement checks whether the current Unit is in range of its target, if it is then there is no point in moving
                                 {
-                                    soldier.UnitAnimator.SetBool("isWalking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
+
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -552,29 +621,36 @@ public class GameManager : MonoBehaviour {
                                 RangedUnit enemy = (RangedUnit)soldier.closestUnit(Map.gameUnits);
                                 if (soldier.inRange(soldier.closestUnit(Map.gameUnits)) == false)
                                 {
-                                    soldier.UnitAnimator.SetBool("isWalking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetTrigger("isWalking");
+
                                     if (soldier.UnitObject.transform.position.x < enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.x > enemy.UnitObject.transform.position.x)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(soldier.Speed * Time.deltaTime, 0, 0);
+
+                                        soldier.UnitObject.transform.Rotate(0, 180, 0);
+
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y < enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position += new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                     else if (soldier.UnitObject.transform.position.y > enemy.UnitObject.transform.position.y)
                                     {
                                         soldier.UnitObject.transform.position -= new Vector3(0, soldier.Speed * Time.deltaTime, 0);
+                                        soldier.updatePos();
                                     }
                                 }
                                 else
                                 {
                                     soldier.UnitAnimator.SetBool("isAttacking", true);
-                                    soldier.UnitAnimator.SetBool("isidle", false);
+                                    soldier.UnitAnimator.SetBool("isIdle", false);
                                     soldier.combatWithEnemy(enemy);
                                 }
                             }
@@ -588,42 +664,8 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        //else if (gameActive == false)
-        //{
-        //    foreach(Unit u in Map.gameUnits)
-        //    {
-        //        if (u.GetType() == typeof(MeleeUnit))
-        //        {
-        //            MeleeUnit temp = (MeleeUnit)u;
-        //            temp.UnitAnimator.SetBool("isIdle", true);
-        //            temp.UnitAnimator.SetBool("isWalking", false);
-        //            temp.UnitAnimator.SetBool("isAttacking", false);
-
-        //        }
-        //        else if (u.GetType() == typeof(RangedUnit))
-        //        {
-        //            RangedUnit temp = (RangedUnit)u;
-        //            temp.UnitAnimator.SetBool("isIdle", true);
-        //            temp.UnitAnimator.SetBool("isWalking", false);
-        //            temp.UnitAnimator.SetBool("isAttacking", false);
-        //        }
-        //        else if (u.GetType() == typeof(BarbarianMelee))
-        //        {
-        //            BarbarianMelee temp = (BarbarianMelee)u;
-        //            temp.UnitAnimator.SetBool("isIdle", true);
-        //            temp.UnitAnimator.SetBool("isWalking", false);
-        //            temp.UnitAnimator.SetBool("isAttacking", false);
-        //        }
-        //        else
-        //        {
-        //            BarbarianRanged temp = (BarbarianRanged)u;
-        //            temp.UnitAnimator.SetBool("isIdle", true);
-        //            temp.UnitAnimator.SetBool("isWalking", false);
-        //            temp.UnitAnimator.SetBool("isAttacking", false);
-        //        }
-        //    }
-        //}
-	}
+        IdlePause();
+    }
 
     public void BuildingController()
     {
@@ -703,24 +745,28 @@ public class GameManager : MonoBehaviour {
                     {
                         scaredSoldier.UnitObject.transform.position += new Vector3(0, scaredSoldier.Speed * Time.deltaTime, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
                 case 1:
                     {
                         scaredSoldier.UnitObject.transform.position -= new Vector3(0, scaredSoldier.Speed * Time.deltaTime, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
                 case 2:
                     {
                         scaredSoldier.UnitObject.transform.position += new Vector3(scaredSoldier.Speed * Time.deltaTime, 0, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
                 case 3:
                     {
                         scaredSoldier.UnitObject.transform.position += new Vector3(scaredSoldier.Speed * Time.deltaTime, 0, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
             }
@@ -735,24 +781,28 @@ public class GameManager : MonoBehaviour {
                     {
                         scaredSoldier.UnitObject.transform.position += new Vector3(0, scaredSoldier.Speed * Time.deltaTime, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
                 case 1:
                     {
                         scaredSoldier.UnitObject.transform.position -= new Vector3(0, scaredSoldier.Speed * Time.deltaTime, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
                 case 2:
                     {
                         scaredSoldier.UnitObject.transform.position += new Vector3(scaredSoldier.Speed * Time.deltaTime, 0, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
                 case 3:
                     {
                         scaredSoldier.UnitObject.transform.position += new Vector3(scaredSoldier.Speed * Time.deltaTime, 0, 0); //The units movement is multiplied by its movement speed because it is running 
                         scaredSoldier.Health -= 1;
+                        soldier.updatePos();
                     }
                     break;
             }
@@ -772,12 +822,14 @@ public class GameManager : MonoBehaviour {
                 if (M.Faction == "Red")
                 {
                     M.UnitObject = Instantiate(RedSword, new Vector3(unitX, unitY, 0), Quaternion.identity);
+                    M.updatePos();
                     M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
 
                 }
                 else if (M.Faction == "Blue")
                 {
                     M.UnitObject = Instantiate(BlueSword, new Vector3(unitX, unitY, 0), Quaternion.identity);
+                    M.updatePos();
                     M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
                 }
             }
@@ -787,11 +839,13 @@ public class GameManager : MonoBehaviour {
                 if (M.Faction == "Red")
                 {
                     M.UnitObject = Instantiate(RedArcher, new Vector3(unitX, unitY, 0), Quaternion.identity);
+                    M.updatePos();
                     M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
                 }
                 else if (M.Faction == "Blue")
                 {
                     M.UnitObject = Instantiate(BlueArcher, new Vector3(unitX, unitY, 0), Quaternion.identity);
+                    M.updatePos();
                     M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
                 }
             }
@@ -799,12 +853,14 @@ public class GameManager : MonoBehaviour {
             {
                 BarbarianMelee M = (BarbarianMelee)u;
                 M.UnitObject = Instantiate(WhiteSword, new Vector3(unitX, unitY, 0), Quaternion.identity);
+                M.updatePos();
                 M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
             }
             else
             {
                 BarbarianRanged M = (BarbarianRanged)u;
                 M.UnitObject = Instantiate(WhiteArcher, new Vector3(unitX, unitY, 0), Quaternion.identity);
+
                 M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
             }
         }
@@ -860,7 +916,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void LoadGame()
+    public void LoadGame() //Add resource update
     {
         BinaryFormatter b = new BinaryFormatter();
         FileStream fsIN = new FileStream("GameEngine.dat", FileMode.Open, FileAccess.Read, FileShare.None);
@@ -873,13 +929,16 @@ public class GameManager : MonoBehaviour {
                 Map = TempClass;
 
                 DestroyAllUnits();
-                CreateMap();
+                LoadedMap();
 
                 if (Map.seconds < 10)
                 {
                     gameTimer.text = "Time: " + Map.minutes.ToString() + ":0" + Map.seconds.ToString();
                 }
                 else gameTimer.text = "Time: " + Map.minutes.ToString() + ":" + Map.seconds.ToString();
+
+                blueResourceText.text = "BR: " + Map.blueResourceCounter.ToString();
+                redResourceText.text = "RR: " + Map.redResourceCounter.ToString();
             }
         }
         catch (FileNotFoundException ex)
@@ -894,7 +953,117 @@ public class GameManager : MonoBehaviour {
 
         foreach(GameObject u in Unit2Destroy)
         {
-            GameObject.Destroy(u);
+            Destroy(u);
+        }
+    }
+
+    void IdlePause()
+    {
+        if (gameActive == false)
+        {
+            foreach (Unit u in Map.gameUnits)
+            {
+                if (u.GetType() == typeof(MeleeUnit))
+                {
+                    MeleeUnit temp = (MeleeUnit)u;
+                    temp.UnitAnimator.SetTrigger("isIdle");
+
+                }
+                else if (u.GetType() == typeof(RangedUnit))
+                {
+                    RangedUnit temp = (RangedUnit)u;
+                    temp.UnitAnimator.SetTrigger("isIdle");
+                }
+                else if (u.GetType() == typeof(BarbarianMelee))
+                {
+                    BarbarianMelee temp = (BarbarianMelee)u;
+                    temp.UnitAnimator.SetTrigger("isIdle");
+                }
+                else
+                {
+                    BarbarianRanged temp = (BarbarianRanged)u;
+                    temp.UnitAnimator.SetTrigger("isIdle");
+                }
+            }
+        }
+    }
+
+    void LoadedMap()
+    {
+        foreach (Unit u in Map.gameUnits)
+        {
+            if (u.GetType() == typeof(MeleeUnit))
+            {
+                MeleeUnit M = (MeleeUnit)u;
+                if (M.Faction == "Red")
+                {
+                    M.UnitObject = Instantiate(RedSword, new Vector3(M.XPos, M.YPos, 0), Quaternion.identity);
+                    M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
+
+                }
+                else if (M.Faction == "Blue")
+                {
+                    M.UnitObject = Instantiate(BlueSword, new Vector3(M.XPos, M.YPos, 0), Quaternion.identity);
+                    M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
+                }
+            }
+            else if (u.GetType() == typeof(RangedUnit))
+            {
+                RangedUnit M = (RangedUnit)u;
+                if (M.Faction == "Red")
+                {
+                    M.UnitObject = Instantiate(RedArcher, new Vector3(M.XPos, M.YPos, 0), Quaternion.identity);
+                    M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
+                }
+                else if (M.Faction == "Blue")
+                {
+                    M.UnitObject = Instantiate(BlueArcher, new Vector3(M.XPos, M.YPos, 0), Quaternion.identity);
+                    M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
+                }
+            }
+            else if (u.GetType() == typeof(BarbarianMelee))
+            {
+                BarbarianMelee M = (BarbarianMelee)u;
+                M.UnitObject = Instantiate(WhiteSword, new Vector3(M.XPos, M.YPos, 0), Quaternion.identity);
+                M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
+            }
+            else
+            {
+                BarbarianRanged M = (BarbarianRanged)u;
+                M.UnitObject = Instantiate(WhiteArcher, new Vector3(M.XPos, M.YPos, 0), Quaternion.identity);
+                M.UnitAnimator = M.UnitObject.GetComponent<Animator>();
+            }
+        }
+
+        for (int b = 0; b < 6; b++)
+        {
+            switch (b)
+            {
+                case 0:
+                    Resource_Building newResource1 = (Resource_Building)Map.gameBuildings[0];
+                    newResource1.BuildingObject = Instantiate(BlueResource, new Vector3(-7.35f, 4, 0), Quaternion.identity);
+                    break;
+                case 1:
+                    Factory_Building newBlueFactory1 = (Factory_Building)Map.gameBuildings[1];
+                    newBlueFactory1.BuildingObject = Instantiate(BlueFactory, new Vector3(-7.51f, 2.42f, 0), Quaternion.identity);
+                    break;
+                case 2:
+                    Factory_Building newBlueFactory2 = (Factory_Building)Map.gameBuildings[2];
+                    newBlueFactory2.BuildingObject = Instantiate(BlueFactory, new Vector3(-5.73f, 4.11f, 0), Quaternion.identity);
+                    break;
+                case 3:
+                    Resource_Building newResource2 = (Resource_Building)Map.gameBuildings[3];
+                    newResource2.BuildingObject = Instantiate(RedResource, new Vector3(3.4f, -3.8f, 0), Quaternion.identity);
+                    break;
+                case 4:
+                    Factory_Building newRedFactory1 = (Factory_Building)Map.gameBuildings[4];
+                    newRedFactory1.BuildingObject = Instantiate(RedFactory, new Vector3(1.9f, -3.8f, 0), Quaternion.identity);
+                    break;
+                case 5:
+                    Factory_Building newRedFactory2 = (Factory_Building)Map.gameBuildings[5];
+                    newRedFactory2.BuildingObject = Instantiate(RedFactory, new Vector3(3.68f, -2.57f, 0), Quaternion.identity);
+                    break;
+            }
         }
     }
 }

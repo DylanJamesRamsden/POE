@@ -7,10 +7,12 @@ public class Hover_Play : MonoBehaviour {
     public GameObject Main1;
     public GameObject Second1;
     public GameObject Third1;
+    public GameObject Fourth1;
 
     public GameObject Main2;
     public GameObject Second2;
     public GameObject Third2;
+    public GameObject Fourth2;
 
     public AudioSource ButtonSound;
 
@@ -26,9 +28,11 @@ public class Hover_Play : MonoBehaviour {
 
         Second2.SetActive(false);
         Third2.SetActive(false);
+        Fourth2.SetActive(false);
 
         Second1.SetActive(true);
         Third1.SetActive(true);
+        Fourth1.SetActive(true);
 
         ButtonSound.Play();
     }

@@ -9,9 +9,9 @@ using UnityEngine;
     {
         protected string name; //Holds the name of the unit
 
-        //protected int xpos; //Holds the units x position on the map
+        protected float xpos; //Holds the units x position on the map
 
-        //protected int ypos; //Holds the units y position on the map
+        protected float ypos; //Holds the units y position on the map
 
         protected int speed; //Holds the units running speed, this is only used when the unit is running away from combat
 
@@ -35,7 +35,7 @@ using UnityEngine;
         [NonSerialized]
         protected Animator unitanimator;
 
-        //abstract public void newPos(int xP, int yP); //Assigns the unit a new x or y position
+        abstract public void updatePos(); //Assigns the unit a new x or y position
 
         abstract public void combatWithEnemy(Unit Enemy); //This method is used to carry out combat between the unit and its closest enemy
 

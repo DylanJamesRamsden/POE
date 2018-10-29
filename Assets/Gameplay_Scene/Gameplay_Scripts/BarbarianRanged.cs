@@ -13,19 +13,19 @@ using UnityEngine;
             set { base.name = value; }
         }
 
-        //public int XPos
-        //{
-        //    get { return base.xpos; }
-        //    set { base.xpos = value; }
-        //}
+    public float XPos
+    {
+        get { return base.xpos; }
+        set { base.xpos = value; }
+    }
 
-        //public int YPos
-        //{
-        //    get { return base.ypos; }
-        //    set { base.ypos = value; }
-        //}
+    public float YPos
+    {
+        get { return base.ypos; }
+        set { base.ypos = value; }
+    }
 
-        public int Speed
+    public int Speed
         {
             get { return base.speed; }
             set { base.speed = value; }
@@ -87,19 +87,19 @@ using UnityEngine;
             Health = 100;
             Speed = 3;
             Attack = 50;
-            AttackRange = 1;
+            AttackRange = 0.5f;
             Faction = unitFaction;
             IsAlive = true;
             unitcost = 0;
         }
 
-        //public override void newPos(int xP, int yP)
-        //{
-        //    XPos = xP;
-        //    YPos = yP;
-        //}
+    public override void updatePos()
+    {
+        XPos = unitobject.transform.position.x;
+        YPos = unitobject.transform.position.y;
+    }
 
-        public override void combatWithEnemy(Unit Enemy)
+    public override void combatWithEnemy(Unit Enemy)
         {
             if (Enemy.GetType() == typeof(MeleeUnit))
             {

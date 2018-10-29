@@ -69,10 +69,13 @@
      <Compile Include="Assets\Gameplay_Scene\Scripts\PlayPauseControls.cs" />
      <Compile Include="Assets\Gameplay_Scene\Scripts\UIbuttonEffect.cs" />
      <Compile Include="Assets\Gameplay_Scene\Scripts\Zoom_Clicked.cs" />
+     <Compile Include="Assets\Lore\Scripts\Button_HoverMainMenu.cs" />
+     <Compile Include="Assets\Lore\Scripts\MainMenu_Go.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Exit_Play.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Gameplay_Go.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Hover_Play.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Left_CloudMovement.cs" />
+     <Compile Include="Assets\Main_Menu\Scripts\Lore_Go.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Right_CloudMovement.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\StartStopMusic.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\WorldCloudSpawn.cs" />

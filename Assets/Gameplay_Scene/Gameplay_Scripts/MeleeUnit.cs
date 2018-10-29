@@ -13,19 +13,19 @@ using UnityEngine;
             set { base.name = value; }
         }
 
-        //public int XPos
-        //{
-        //    get { return base.xpos; }
-        //    set { base.xpos = value; } 
-        //}
+    public float XPos
+    {
+        get { return base.xpos; }
+        set { base.xpos = value; }
+    }
 
-        //public int YPos
-        //{
-        //    get { return base.ypos; }
-        //    set { base.ypos = value; }
-        //}
+    public float YPos
+    {
+        get { return base.ypos; }
+        set { base.ypos = value; }
+    }
 
-        public int Speed
+    public int Speed
         {
             get { return base.speed; }
             set { base.speed = value; }
@@ -93,20 +93,20 @@ using UnityEngine;
             Health = 100; //All units start off with 100 HP, used to balance the game
             Speed = 1;
             Attack = 25;
-            AttackRange = 1;
+            AttackRange = 0.2f;
             Faction = unitFaction; //Faction is either red or blue
             HasTurned = false;
             IsAlive = true; //a unit always atarts alive
             UnitCost = 6; //How mant resources it costs to spawn this type of unit
         }
 
-        //public override void newPos(int xP, int yP) //Updates the position of this unit
-        //{
-        //    XPos = xP; //Assigns the units current x position with a new x position
-        //    YPos = yP; //Assigns the units current y position with a new y position
-        //}
+    public override void updatePos()
+    {
+        XPos = unitobject.transform.position.x;
+        YPos = unitobject.transform.position.y;
+    }
 
-        public override void combatWithEnemy(Unit Enemy) //Pass through unit object
+    public override void combatWithEnemy(Unit Enemy) //Pass through unit object
         {
             if (Enemy.GetType() == typeof(MeleeUnit)) //This cast is used the convert a unit into its current class, this allows for the units properties to be used and called
             {
