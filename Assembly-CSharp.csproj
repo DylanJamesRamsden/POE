@@ -54,6 +54,7 @@
      <Compile Include="Assets\Gameplay_Scene\Gameplay_Scripts\BarbarianMelee.cs" />
      <Compile Include="Assets\Gameplay_Scene\Gameplay_Scripts\BarbarianRanged.cs" />
      <Compile Include="Assets\Gameplay_Scene\Gameplay_Scripts\Building.cs" />
+     <Compile Include="Assets\Gameplay_Scene\Gameplay_Scripts\BuildingInformation.cs" />
      <Compile Include="Assets\Gameplay_Scene\Gameplay_Scripts\Factory_Building.cs" />
      <Compile Include="Assets\Gameplay_Scene\Gameplay_Scripts\MapController.cs" />
      <Compile Include="Assets\Gameplay_Scene\Gameplay_Scripts\MeleeUnit.cs" />
@@ -76,6 +77,7 @@
      <Compile Include="Assets\Main_Menu\Scripts\Hover_Play.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Left_CloudMovement.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Lore_Go.cs" />
+     <Compile Include="Assets\Main_Menu\Scripts\Quit.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\Right_CloudMovement.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\StartStopMusic.cs" />
      <Compile Include="Assets\Main_Menu\Scripts\WorldCloudSpawn.cs" />

@@ -20,12 +20,6 @@ using UnityEngine;
         set { base.faction = value; }
     }
 
-    //public string Symbol
-    //{
-    //    get { return base.symbol; }
-    //    set { base.symbol = value; }
-    //}
-
     private string resourcetype;
 
     public string ResourceType

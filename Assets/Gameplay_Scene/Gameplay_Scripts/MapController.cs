@@ -29,7 +29,6 @@ using UnityEngine;
                 if (UnityEngine.Random.Range(1, 3) % 2 == 0)
                 {
                     MeleeUnit newMelee = new MeleeUnit("Elven Lancer", "Blue");
-                    Debug.Log("Generates units");
                     gameUnits.Add(newMelee);
                 }
                 else
@@ -71,7 +70,7 @@ using UnityEngine;
             switch (b)
             {
                 case 0:
-                    Resource_Building newResource1 = new Resource_Building("Gold", 1, 100, 100, "Blue");
+                    Resource_Building newResource1 = new Resource_Building("Gold", 1, 20, 100, "Blue");
                     gameBuildings.Add(newResource1);
                     break;
                 case 1:
@@ -83,7 +82,7 @@ using UnityEngine;
                     gameBuildings.Add(newFactory2);
                     break;
                 case 3:
-                    Resource_Building newResource2 = new Resource_Building("Gold", 1, 100, 100, "Red");
+                    Resource_Building newResource2 = new Resource_Building("Gold", 1, 20, 100, "Red");
                     gameBuildings.Add(newResource2);
                     break;
                 case 4:

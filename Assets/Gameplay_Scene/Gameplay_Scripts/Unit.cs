@@ -39,9 +39,15 @@ using UnityEngine;
 
         abstract public void combatWithEnemy(Unit Enemy); //This method is used to carry out combat between the unit and its closest enemy
 
+        abstract public void combatWithEnemy(Building EnemyBuilding);
+
         abstract public bool inRange(Unit Enemy); //This method is used to check if the unit is in range to attack the closest enemy
 
+        abstract public bool inRange(Building EnemyBuilding);
+
         abstract public Unit closestUnit(List<Unit> MapOfUnits);  //This method is used to obtain the closest enemy
+
+        abstract public Building closestUnit(List<Building> MapOfBuildings);
 
         abstract public void isDead(); //This method is used to assign the units current alive status
 

@@ -8,8 +8,6 @@ public class Button_Hover : MonoBehaviour {
 
     public GameObject Main2;
 
-    public AudioSource ButtonSound;
-
 
     // Use this for initialization
     void Start () {
@@ -18,10 +16,7 @@ public class Button_Hover : MonoBehaviour {
 
      public void MouseHovering()
     {
-        Debug.Log("works");
         Main2.SetActive(true);
         Main1.SetActive(false);
-
-        ButtonSound.Play();
     }
 }

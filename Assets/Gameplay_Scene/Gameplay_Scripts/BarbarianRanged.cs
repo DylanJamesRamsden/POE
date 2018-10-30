@@ -86,8 +86,8 @@ using UnityEngine;
             //YPos = yP;
             Health = 100;
             Speed = 3;
-            Attack = 50;
-            AttackRange = 0.5f;
+            Attack = 2;
+            AttackRange = 0.3f;
             Faction = unitFaction;
             IsAlive = true;
             unitcost = 0;
@@ -123,6 +123,30 @@ using UnityEngine;
             }
         }
 
+    public override void combatWithEnemy(Building EnemyBuilding)
+    {
+        if (EnemyBuilding.GetType() == typeof(Resource_Building))
+        {
+            Resource_Building convertEnemy = (Resource_Building)EnemyBuilding;
+            convertEnemy.Health = convertEnemy.Health - Attack;
+
+            if (convertEnemy.Health <= 0)
+            {
+                convertEnemy.isDead();
+            }
+        }
+        else
+        {
+            Factory_Building convertEnemy = (Factory_Building)EnemyBuilding;
+            convertEnemy.Health = convertEnemy.Health - Attack;
+
+            if (convertEnemy.Health <= 0)
+            {
+                convertEnemy.isDead();
+            }
+        }
+    }
+
     public override bool inRange(Unit Enemy)
     {
         float Distance = 0;
@@ -136,6 +160,28 @@ using UnityEngine;
         {
             RangedUnit convertEnemy = (RangedUnit)Enemy;
             Distance = Math.Abs(UnitObject.transform.position.x - convertEnemy.UnitObject.transform.position.x) + (UnitObject.transform.position.y - convertEnemy.UnitObject.transform.position.y);
+        }
+
+        if (Distance <= AttackRange)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    public override bool inRange(Building EnemyBuilding)
+    {
+        float Distance = 0;
+
+        if (EnemyBuilding.GetType() == typeof(Resource_Building))
+        {
+            Resource_Building convertEnemy = (Resource_Building)EnemyBuilding;
+            Distance = Math.Abs(UnitObject.transform.position.x - convertEnemy.BuildingObject.transform.position.x) + (UnitObject.transform.position.y - convertEnemy.BuildingObject.transform.position.y);
+        }
+        else
+        {
+            Factory_Building convertEnemy = (Factory_Building)EnemyBuilding;
+            Distance = Math.Abs(UnitObject.transform.position.x - convertEnemy.BuildingObject.transform.position.x) + (UnitObject.transform.position.y - convertEnemy.BuildingObject.transform.position.y);
         }
 
         if (Distance <= AttackRange)
@@ -170,7 +216,7 @@ using UnityEngine;
     public override Unit closestUnit(List<Unit> MapOfUnits) //This method finds the closest enemy unit away from this unit
     {
         Unit ClosestEnemy = this;
-        float Distance = 300;
+        float Distance = 20;
 
         foreach (Unit u in MapOfUnits)
         {
@@ -229,4 +275,56 @@ using UnityEngine;
             return 30;
         }
     }
+
+    public override Building closestUnit(List<Building> MapOfBuildings) //This method finds the closest enemy unit away from this unit
+    {
+        Building ClosestEnemy = null;
+        float Distance = 20;
+
+        foreach (Building u in MapOfBuildings)
+        {
+            if (u.GetType() == typeof(Resource_Building))
+            {
+                Resource_Building Current = (Resource_Building)u;
+                if (Current.Faction != Faction && Current.isDead() == true)
+                {
+                    if (Distance > DistanceTo(Current))
+                    {
+                        Distance = DistanceTo(Current);
+                        ClosestEnemy = u;
+                    }
+                }
+            }
+            else
+            {
+                Factory_Building Current = (Factory_Building)u;
+                if (Current.Faction != Faction && Current.isDead() == true)
+                {
+                    if (Distance > DistanceTo(Current))
+                    {
+                        Distance = DistanceTo(Current);
+                        ClosestEnemy = u;
+                    }
+                }
+            }
+        }
+        return ClosestEnemy;
+    }
+
+    private float DistanceTo(Building u) //This method calculates the distance between this unit and another one and then returns it as an int
+    {
+        if (u.GetType() == typeof(MeleeUnit))
+        {
+            Resource_Building m = (Resource_Building)u;
+            float d = Math.Abs(UnitObject.transform.position.x - m.BuildingObject.transform.position.x) + Math.Abs(UnitObject.transform.position.y - m.BuildingObject.transform.position.y);
+            return d;
+        }
+        else
+        {
+            Factory_Building m = (Factory_Building)u;
+            float d = Math.Abs(UnitObject.transform.position.x - m.BuildingObject.transform.position.x) + Math.Abs(UnitObject.transform.position.y - m.BuildingObject.transform.position.y);
+            return d;
+        }
+    }
+
 }
